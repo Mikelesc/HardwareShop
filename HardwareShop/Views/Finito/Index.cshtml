@@ -1,0 +1,53 @@
+﻿
+﻿@using Microsoft.AspNetCore.Http;
+<p hidden> @Context.Session.GetString("usuario"); </p>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<html>
+<body>
+    <style>
+        .btn-success {
+            color: #5c5858;
+            background-color: #ff6a00;
+            border-color: #ff6a00;
+        }
+
+
+        img {
+            width: 150px;
+        }
+
+        p {
+            color: #5c5858;
+        }
+
+        element.style {
+            font-size: 20px;
+            color: #0fad00 !important;
+        }
+        h3, .h3 {
+            font-size: 50px;
+        }
+    </style>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-6 col-sm-offset-3">
+                <br><br> <h1 style="color:#5c5858">Compra completada!</h1>
+                <img src="~/images/success.jpg">
+                <h3>Estimado @Context.Session.GetString("usuario"),</h3>
+                <p style="font-size:38px;color:#5c5858;">
+                    Gracias por tu compra. Te hemos enviado un correo con tu factura.
+                </p>
+                <a asp-action="index" asp-controller="Home" class="btn btn-success">     Volver a la tienda     </a>
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Componentes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="~/css/componente.css" />
+</head>
+
+
+<body>   
+    <div>
+        <h1 class="fa-align-center">Componentes</h1>
+
+        @foreach (var product in Model)
+        {
+
+            <div class="col-xs-4 col-md-4 col-lg-4 column productbox">
+                <img src="~/productimages/@product.Imagen" class="img-responsive">
+                <div class="producttitle">@product.Nombre</div>
+                <div class="productprice"><div class="pull-right"><a asp-controller="Componente" asp-action="añadir" asp-route-id="@product.Id" class="btn btn-danger btn-sm" role="button">BUY</a></div><div class="pricetext">@product.Precio €</div></div>
+            </div>
+
+        }
+    </div>
+</body>
+</html>

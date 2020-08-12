@@ -1,0 +1,91 @@
+
+﻿@using Microsoft.AspNetCore.Http;
+
+﻿@{
+    ViewData["Title"] = "Wishlist";
+    Layout = null;
+}
+<p hidden>@Context.Session.GetInt32("logged")</p>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://use.fontawesome.com/c560c025cf.js"></script>
+    <link rel="stylesheet" href="~/css/wishlist.css" />  
+
+</head>
+<body>
+    <style>
+        .bg-dark {
+            background-color: #dc3545 !important;
+        }
+        .badge-success {
+            color: #fff;
+            background-color: #007bff !important;
+        }
+        .btn-outline-info {
+            color: #f8f9fa;
+            background-color: #dc3545;
+            background-image: none;
+            border-color: #f8f9fa;
+        }
+        body {
+            margin: 7px; 
+            font-size: 1.3rem;
+    </style>
+    <div class="container"></div>
+    <div class="card">
+        <div class="card-header bg-dark text-light">
+            <h2> ♥  Tu lista de deseos  </h2>     
+            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-info btn-sm pull-right">Seguir comprando</a>
+            <div class="clearfix"></div>
+        </div>       
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-xs-2 col-md-2">
+                    <img class="img-responsive" src="~/productimages/@item.Product.Imagen" alt="prewiew" style="width:100px">
+                </div>
+                <div class="col-xs-4 col-md-6">
+                    <h4 class="product-name"><strong>@item.Product.Nombre</strong></h4><h4><small>@item.Product.Descripcion</small></h4>
+                </div>
+                <div class="col-xs-6 col-md-4 row">
+                    <div class="col-xs-6 col-md-6 text-right" style="padding-top: 5px">
+                        <h6><strong>@item.Product.Precio <span class="text-muted">x</span></strong></h6>
+                    </div>                  
+                    <div class="col-xs-3 col-md-3">
+                        <a class="btn btn-outline-danger btn-xs"
+                           a asp-controller="wish" asp-action="remove" asp-route-id="@item.Product.Id">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-primary"
+                           a asp-controller="wish" asp-action="añadir" asp-route-id="@item.Product.Id">
+                            <i class="badge-success" aria-hidden="true">Añadir al carrito</i>
+                        </a>
+                    </div>
+                </div>
+            </div>           
+        }
+        <br>
+        <div class="card-body">
+            <hr>
+            <hr>
+            <div class="pull-right">
+                <a href="@Url.Action("Index", "Cart")" class="btn btn-outline-secondary pull-right">Ver el carrito</a>
+            </div>
+        </div>
+        <div class="card-footer">            
+            <div class="pull-right" style="margin: 5px">              
+            </div>
+        </div>
+    </div> 
+
+</body>
+</html>
+
